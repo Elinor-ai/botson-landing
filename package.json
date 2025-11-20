@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "gcloud run deploy botson-landing --source . --region us-central1 --allow-unauthenticated --memory=512Mi --max-instances=10"
   },
   "dependencies": {
     "lucide-react": "^0.554.0",
