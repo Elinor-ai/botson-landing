@@ -1,7 +1,7 @@
 "use client"; // <--- שורה זו קריטית!
 
 import React, { useState, useEffect } from "react";
-import { sendContactEmail } from "./actions";
+import { sendEmail } from "./actions";
 import {
   Cpu,
   Globe,
@@ -454,7 +454,7 @@ const Contact = () => {
         formData.append(key, value);
       });
 
-      const result = await sendContactEmail(formData);
+      const result = await sendEmail(formData);
 
       if (result?.success) {
         setIsSubmitted(true);

@@ -1,10 +1,33 @@
-Botson AI Landing PageA high-performance landing page for Botson AI, built with Next.js (App Router), Tailwind CSS, and Nodemailer for contact form handling.🚀 PrerequisitesBefore you begin, ensure you have the following installed:Node.js (Version 18 or higher)npm (Node Package Manager)🛠️ InstallationClone the repository (or download the files):git clone <your-repo-url>
-cd botson-landing
-Install dependencies:npm install
-🔑 Gmail Configuration (Crucial Step)To allow the contact form to send emails, you cannot use your regular Gmail password. You must generate a specific App Password.Step 1: Enable 2-Step VerificationGo to your Google Account Security Page.Under "How you sign in to Google", make sure 2-Step Verification is turned ON.(Note: Google will not allow you to create an App Password if this is off).Step 2: Generate an App PasswordWhile in the Security page, search for "App passwords" in the top search bar.Click on it (you might need to sign in again).Give the app a name (e.g., "Botson Website").Click Create.Google will show you a 16-character password in a yellow box.Copy this password.You don't need the spaces, but it works with them too.Step 3: Set up Environment VariablesCreate a file named .env.local in the root directory of your project.Paste the following content into it:# Your Gmail address
+# Botson AI Landing Page
+
+Marketing site for Botson AI, built with Next.js (App Router) and Tailwind CSS. The contact form uses a server action with Nodemailer (Gmail SMTP) to deliver messages.
+
+## Quick Start
+- Requires Node.js 18+ and npm.
+- Install dependencies: `npm install`
+- Create `.env.local` (see Environment below).
+- Run locally: `npm run dev` then open http://localhost:3000
+
+## Environment
+Create a `.env.local` file in the project root:
+```
 EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-gmail-app-password
+```
 
-# The 16-character App Password you just generated
+Gmail App Password steps (required; a normal password will not work):
+1) In your Google Account, enable 2-Step Verification.
+2) In Security settings, open “App passwords”, create a new password (name it e.g. "Botson Site"), and copy the 16-character code.
+3) Use that code (with or without spaces) as `EMAIL_PASS`.
 
-EMAIL_PASS=xxxx xxxx xxxx xxxx
-⚠️ Security Warning: Never commit your .env.local file to GitHub. It contains sensitive credentials.🏃‍♂️ Running LocallyOnce the dependencies are installed and the .env.local file is ready:Start the development server:npm run dev
+Security note: never commit `.env.local` to version control.
+
+## Scripts
+- `npm run dev` – start dev server
+- `npm run build` – production build
+- `npm run start` – run the built app
+- `npm run lint` – lint the codebase
+
+## Implementation Notes
+- Contact form logic lives in `src/app/actions.js` (server action) and `src/app/page.js` (client form).
+- Emails are sent from and delivered to `EMAIL_USER`, with `replyTo` set to the submitter’s email when provided.
